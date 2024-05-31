@@ -1,0 +1,12 @@
+# /etc/systemd/system/serve-startpage.service
+[Unit]
+Description==HTTP Server to Serve StartTree
+After=network.target
+
+[Service]
+ExecStart=/home/tommy/.cache/StartTree/serve-startpage.sh
+WorkingDirectory=/home/tommy/.cache/StartTree/
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
