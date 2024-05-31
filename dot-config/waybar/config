@@ -1,0 +1,85 @@
+{
+    "layer": "top",
+    "spacing": 10,
+    "margin": 10,
+    
+    "modules-left": ["hyprland/window"],
+    "modules-center": ["custom/offswitch", "clock"],
+    "modules-right": ["pulseaudio", "bluetooth", "network", "battery", "tray"],
+    
+    
+    "custom/offswitch": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": " ",
+        "interval": "once",
+        "on-click": "systemctl poweroff",
+        "on-click-right": "reboot"
+    },
+    "clock": {
+        "interval": 60,
+        "format": "{:%a %e %b, %I:%M %p}",
+        "on-click": "swaylock"
+    },
+    "pulseaudio": {
+        "format": " {volume}%",
+        "format-bluetooth": "󰥰 {volume}%",
+        "format-bluetooth-muted": "󰝟 muted",
+        "format-muted": "󰝟 muted",
+        "on-click": "pavucontrol" 
+    },
+    "bluetooth": {
+        "format": " {status}",
+        "format-connected": " {status} to {device_alias}",
+        "format-connected-battery": "  {status} to {device_alias} {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}",
+        "on-click": "blueman-manager"
+    },
+    "network": {
+        "format-wifi": " {signalStrength}% ",
+        "format-ethernet": "󰈀 Connected ",
+        "tooltip-format": "{ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+         "on-click": "nm-connection-editor",
+        "format-disconnected": " /󰈀 Disconnected "
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 50,
+        "tooltip": false
+	},   
+    "disk": {
+    "interval": 30,
+    "format": "SSD {free}",
+    },
+    "user": {
+        "format": "{user} up since {work_M} mn",
+        "interval": 60,
+        "height": 30,
+        "width": 30,
+        "icon": false
+        
+    },
+    "cpu": {
+        "format": "CPU {usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "RAM {}% "
+    },
+}

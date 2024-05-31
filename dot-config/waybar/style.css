@@ -1,0 +1,76 @@
+* {
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+}
+
+window#waybar {
+    background-color: rgba(59, 59, 59, 0);
+    border-radius: 15px;
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#window
+
+{
+    color: #595959;
+    border-radius: 15px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+#clock,
+#battery,
+#battery.charging, 
+#battery.plugged,
+#network,
+#network.disconnected,
+#pulseaudio,
+#bluetooth,
+#disk
+{
+    color: #324df8;
+    border-radius: 15px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+@keyframes blink {
+    to {
+        background-color: #324df8;
+        color: #1b1b1b;
+    }
+}
+
+#battery.critical:not(.charging) {
+    color: #e70948;
+    padding-left: 6px;
+    padding-right: 6px;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#pulseaudio.muted {
+    background-color: #e70948;
+    color: #1b1b1b;
+    border-radius: 15px;
+    padding-left: 6px;
+    padding-right: 6px;
+
+}
+
+tooltip {
+  background: #1b1b1b;
+  border-radius: 15px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #324df8;
+}
