@@ -4,12 +4,12 @@
 declare -A apps=(
     ["Spotify"]="spotify"
     ["Steam"]="steam"
-    ["Minecraft"]="modrinth-app"
+    ["Modrinth"]="modrinth-app"
     ["Firefox"]="firefox"
     ["VS Code"]="code"
     ["Terminal"]="kitty"
     ["File Manager"]="thunar"
-    ["Burp Suite"]="java -jar -Xmx4g /home/tommy/BurpSuitePro/burpsuite_pro.jar"
+    ["Burp Suite"]="java -jar -Xmx6g /home/tommy/BurpSuitePro/burpsuite_pro.jar"
     ["Virtual Machines"]="virt-manager"
 )
 
