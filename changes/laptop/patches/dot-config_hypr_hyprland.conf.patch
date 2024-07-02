@@ -1,0 +1,84 @@
+--- /home/tommy/.dotctl/base/dot-config/hypr/hyprland.conf	2024-06-15 10:03:12.490353517 -0700
++++ /home/tommy/.dotctl/intermediate/dot-config/hypr/hyprland.conf	2024-06-15 10:11:37.501548635 -0700
+@@ -1,12 +1,13 @@
+ # tommy@archlinux hyprland config
++# hp envy laptop
+ 
+-monitor=DP-1,3440x1440@165.00101,0x0,1
+-monitor=HDMI-A-1,2560x1440@60,-1440x-650,1,transform,3
++monitor=eDP-1,1920x1080@60,0x0,1
+ 
+ # Execute at launch
+ exec-once = waybar & hyprpaper & mako
+ exec-once = wl-clipboard-history -t & wl-paste --watch cliphist store & rm "$HOME/.cache/cliphist/db"
+ exec-once = hyprpm reload # Enable hyprpm packages on boot
++exec-once = wvkbd-mobintl --hidden -L 300 # start OSK to be available to gestures
+ 
+ # Gtk theme
+ exec-once = hyprctl setcursor GoogleDot-Blue 24
+@@ -29,6 +30,9 @@
+     kb_layout = us
+     follow_mouse = 1
+     sensitivity = 0
++    touchpad {
++        natural_scroll = no
++    }
+ }
+ 
+ general {
+@@ -42,6 +46,18 @@
+     allow_tearing = false
+ }
+ 
++gestures {
++    workspace_swipe = on
++    workspace_swipe_cancel_ratio = 0.15
++}
++
++plugin {
++  touch_gestures {
++  sensitivity = 4.0
++  workspace_swipe_fingers = 3
++  }
++}
++
+ decoration {
+ 	blur {
+     	enabled = true
+@@ -149,9 +165,6 @@
+ bind = SUPER,L,exec,swaylock
+ bind = SUPER,Z,exec,grim -g "$(slurp)"
+ bind = SUPER SHIFT,Z,exec,grim -g "0,0 3440x1440"
+-bind = SUPER ALT,Z,exec,grim -g "$(slurp)" - | wl-copy
+-bind = SUPER ALT SHIFT,Z,exec,grim -g "0,0 3440x1440" - | wl-copy
+-
+ 
+ # Sound control
+ bind = ,code:121, exec, pamixer --toggle-mute
+@@ -163,3 +176,25 @@
+ bind = ,code:172,exec,playerctl play-pause
+ bind = ,code:173,exec,playerctl previous
+ bind = ,code:171,exec,playerctl next
++
++## Binds below are mainly for a touchscreen laptop
++# OSK
++bind = SUPER,K,exec,pkill wvkbd -SIGRTMIN # Toggles OSK by sending SIGRTMIN
++# Gestures
++bind = , edge:u:d, exec, wofi --show drun
++bind = , edge:d:u, exec, pkill wvkbd -SIGRTMIN
++bind = , swipe:4:d, killactive
++bindm = , longpress:2, movewindow
++bindm = , longpress:3, resizewindow
++bind = , edge:l:d, exec, pamixer -ud 10
++bind = , edge:l:u, exec, pamixer -ui 10
++bind = , edge:r:u, exec, firefox
++bind = , edge:r:d, exec, kitty
++
++# Keyboard backlight control
++binde = SUPER, code:232, exec, brightnessctl --device='input3::numlock' set 0
++binde = SUPER, code:233, exec, brightnessctl --device='input3::numlock' set 1
++
++# Brightness control
++binde = ,code:232, exec, brightnessctl set 5%-
++binde = ,code:233, exec, brightnessctl set 5%+
+\ No newline at end of file
