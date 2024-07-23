@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Clarification: This is my tongue-in-cheek response to the Razer Snap Tap drama and
+#   is something I would personally find extroadinarily annoying to actually use.
+#   Please consult the rules of whatever game you play to make sure you're not ruining
+#   the fun for everyone else.
+
 # Quick and dirty implementation of null movement on Wayland using ydotool.
 # Replace /dev/input/event19 with your actual keyboard event number. For example, use evtest.
 KEYBOARD_DEVICE="/dev/input/event19"
