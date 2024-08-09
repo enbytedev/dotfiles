@@ -12,3 +12,8 @@ PS1='[\u@\h \W]\$ '
 eval "$(starship init bash)"
 
 alias paclean='sudo pacman -Rns $(pacman -Qtdq)'
+
+q() {
+    local script_path="$(realpath ~/Scripts/quick-find-and-execute.sh)"
+    "$script_path" "$@"
+}
