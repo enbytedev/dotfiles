@@ -3,6 +3,9 @@
 # Configuration: define what you want to be warned about
 dangerous_commands=("rm" "dd" "mkfs" "chmod" "chown")
 
+# Prefix to identify commands run by this script (for internal filtering only, not added to history)
+script_prefix="q "
+
 # Load history from file. Using the history command didn't work and this is perfectly fine.
 history_file=~/.bash_history
 
@@ -46,7 +49,7 @@ if [ ! -f "$history_file" ]; then
   exit 1
 fi
 
-matches=$(grep "$search_term" "$history_file" | tac | awk '!seen[$0]++' | head -5)
+matches=$(grep "$search_term" "$history_file" | grep -v "^$script_prefix" | tac | awk '!seen[$0]++' | head -5)
 
 if [ -z "$matches" ]; then
   print_red "No matches found for '$search_term'."
@@ -82,6 +85,8 @@ while true; do
             if [ -z "$confirm" ]; then
               print_green "\nExecuting: $selected_command"
               eval "$selected_command"
+              # Add the executed command as the most recent in history without prefix
+              echo "$selected_command" >> "$history_file"
             else
               print_red "\nCancelled. Exiting."
             fi
@@ -91,6 +96,8 @@ while true; do
 
         # execute with no confirming if the cmd isnt dangerous
         print_green "\nExecuting: $selected_command"
+        # Add the executed command as the most recent in history without prefix
+        echo "$selected_command" >> "$history_file"
         eval "$selected_command"
         break
       fi
